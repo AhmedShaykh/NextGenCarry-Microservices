@@ -1,0 +1,68 @@
+name: Deploy NEXTGENCARRY Microservices to Vercel
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  deploy-cat-api:
+    name: Deploy Categories API
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL_CAT: ${{ secrets.DATABASE_URL_CAT }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy Categories API
+        run: |
+          cd apps/cat-api
+
+          vercel pull \
+            --yes \
+            --environment=production \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+          vercel deploy \
+            --prod \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+  deploy-brand-api:
+    name: Deploy Brands API
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL_BRAND: ${{ secrets.DATABASE_URL_BRAND }}
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy Brands API
+        run: |
+          cd apps/brand-api
+
+          vercel pull \
+            --yes \
+            --environment=production \
+            --token=${{ secrets.VERCEL_TOKEN }}
+
+          vercel deploy \
+            --prod \
+            --token=${{ secrets.VERCEL_TOKEN }}
