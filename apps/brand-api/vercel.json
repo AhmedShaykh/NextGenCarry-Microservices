@@ -1,7 +1,5 @@
 {
     "version": 2,
-    "projectId": "prj_iQLwGxDXfjdjqsORDuB7S2uP8eDQ",
-    "orgId": "team_5ZNRBRsRZRHxZBqAkVm5vC6u",
     "builds": [
         {
             "src": "src/main.ts",

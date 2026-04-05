@@ -31,11 +31,15 @@ jobs:
           vercel pull \
             --yes \
             --environment=production \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --org ${ORG_ID_CAT} \
+            --project ${PROJECT_ID_CAT}
 
           vercel deploy \
             --prod \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --org ${ORG_ID_CAT} \
+            --project ${PROJECT_ID_CAT}
 
   deploy-brand-api:
     name: Deploy Brands API
@@ -61,8 +65,12 @@ jobs:
           vercel pull \
             --yes \
             --environment=production \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --org ${ORG_ID_BRAND} \
+            --project ${PROJECT_ID_BRAND}
 
           vercel deploy \
             --prod \
-            --token=${{ secrets.VERCEL_TOKEN }}
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --org ${ORG_ID_BRAND} \
+            --project ${PROJECT_ID_BRAND}
