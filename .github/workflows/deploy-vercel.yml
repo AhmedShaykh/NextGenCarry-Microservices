@@ -6,16 +6,15 @@ on:
       - main
 
 jobs:
-
-  deploy-cat-api:
-    name: Deploy Categories API
+  deploy-microservices:
+    name: Deploy Microservices to Vercel
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL_CAT: ${{ secrets.DATABASE_URL_CAT }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Install dependencies
@@ -24,53 +23,28 @@ jobs:
       - name: Install Vercel CLI
         run: npm install -g vercel@latest
 
+      # ===========================
+      # Deploy Categories API
+      # ===========================
       - name: Deploy Categories API
+        env:
+          DATABASE_URL_CAT: ${{ secrets.DATABASE_URL_CAT }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID_CAT }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID_CAT }}
         run: |
           cd apps/cat-api
+          vercel pull --yes --environment=production
+          vercel deploy --prod
 
-          vercel pull \
-            --yes \
-            --environment=production \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --org ${ORG_ID_CAT} \
-            --project ${PROJECT_ID_CAT}
-
-          vercel deploy \
-            --prod \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --org ${ORG_ID_CAT} \
-            --project ${PROJECT_ID_CAT}
-
-  deploy-brand-api:
-    name: Deploy Brands API
-    runs-on: ubuntu-latest
-
-    env:
-      DATABASE_URL_BRAND: ${{ secrets.DATABASE_URL_BRAND }}
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Vercel CLI
-        run: npm install -g vercel@latest
-
+      # ===========================
+      # Deploy Brands API
+      # ===========================
       - name: Deploy Brands API
+        env:
+          DATABASE_URL_BRAND: ${{ secrets.DATABASE_URL_BRAND }}
+          VERCEL_ORG_ID: ${{ secrets.ORG_ID_BRAND }}
+          VERCEL_PROJECT_ID: ${{ secrets.PROJECT_ID_BRAND }}
         run: |
           cd apps/brand-api
-
-          vercel pull \
-            --yes \
-            --environment=production \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --org ${ORG_ID_BRAND} \
-            --project ${PROJECT_ID_BRAND}
-
-          vercel deploy \
-            --prod \
-            --token=${{ secrets.VERCEL_TOKEN }} \
-            --org ${ORG_ID_BRAND} \
-            --project ${PROJECT_ID_BRAND}
+          vercel pull --yes --environment=production
+          vercel deploy --prod
