@@ -8,8 +8,9 @@ async function bootstrap() {
 
   app.enableCors({
     origin: [
-      "https://nextgencarry-store.vercel.app/",
-      "https://nextgencarry.store/"
+      "https://nextgencarry-store.vercel.app",
+      "https://nextgencarry.store",
+      "http://localhost:3000"
     ],
     methods: "GET,HEAD,PUT,POST,DELETE",
     credentials: true
