@@ -1,7 +1,7 @@
 <p align="center">
   <img 
-   src="apps/public/favicon.png"
-   alt="NextGenCarry Logo" width="300"
+   src="apps/public/Logo.jpg"
+   alt="NextGenCarry Logo" width="500"
   />
 </p>
 
