@@ -1,13 +1,13 @@
 import { Injectable, NotFoundException, ConflictException } from "@nestjs/common";
 import { PrismaService } from "src/prisma/prisma.service";
-import { GucciDTO } from "./gucci.dto";
+import { DiorDTO } from "./dior.dto";
 
 @Injectable()
-export class GucciService {
+export class DiorService {
 
     constructor(private readonly prisma: PrismaService) { };
 
-    async seedGucci(data: GucciDTO[]) {
+    async seedDior(data: DiorDTO[]) {
 
         if (!Array.isArray(data)) {
 
@@ -15,7 +15,7 @@ export class GucciService {
 
         }
 
-        const result = await this.prisma.gucci.createMany({
+        const result = await this.prisma.dior.createMany({
             data: data.map(item => ({
                 title: item.title,
                 desc: item.desc,
@@ -33,11 +33,11 @@ export class GucciService {
 
     };
 
-    async create(dto: GucciDTO) {
+    async create(dto: DiorDTO) {
 
         try {
 
-            return await this.prisma.gucci.create({ data: dto });
+            return await this.prisma.dior.create({ data: dto });
 
         } catch (error: any) {
 
@@ -55,17 +55,17 @@ export class GucciService {
 
     async findAll() {
 
-        return this.prisma.gucci.findMany({ orderBy: { createdAt: "desc" } });
+        return this.prisma.dior.findMany({ orderBy: { createdAt: "desc" } });
 
     };
 
     async findOne(id: string) {
 
-        const product = await this.prisma.gucci.findUnique({ where: { id } });
+        const product = await this.prisma.dior.findUnique({ where: { id } });
 
         if (!product) {
 
-            throw new NotFoundException(`Gucci With ID ${id} Not Found`);
+            throw new NotFoundException(`Dior With ID ${id} Not Found`);
 
         }
 

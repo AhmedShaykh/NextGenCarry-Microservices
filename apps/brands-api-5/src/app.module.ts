@@ -1,9 +1,8 @@
-import { AdidasModule } from "./Adidas/adidas.module";
 import { FendiModule } from "./Fendi/fendi.module";
+import { PradaModule } from "./Prada/prada.module";
 import { MongooseModule } from "@nestjs/mongoose";
 import { setServers } from "node:dns/promises";
 import { ConfigModule } from "@nestjs/config";
-import { YSLModule } from "./YSL/ysl.module";
 import { Module } from "@nestjs/common";
 
 setServers(["1.1.1.1", "8.8.8.8"]);
@@ -22,9 +21,8 @@ setServers(["1.1.1.1", "8.8.8.8"]);
     MongooseModule.forRoot(
       process.env.DATABASE_URL_API_5!
     ),
-    AdidasModule,
     FendiModule,
-    YSLModule
+    PradaModule
   ],
   controllers: [],
   providers: []

@@ -7,6 +7,11 @@ export class FendiController {
 
     constructor(private readonly service: FendiService) { };
 
+    @Post("seed")
+    async seedFendi(@Body() data: FendiDTO[]) {
+        return this.service.seedFendi(data);
+    };
+
     @Post()
     create(@Body() dto: FendiDTO) {
         return this.service.create(dto);

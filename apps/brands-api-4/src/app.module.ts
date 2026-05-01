@@ -1,19 +1,15 @@
-import { BalenciagaModule } from "./Balenciaga/balenciaga.module";
+import { ValentinoModule } from "./Valentino/valentino.module";
 import { PrismaModule } from "./prisma/prisma.module";
-import { NikeModule } from "./Nike/nike.module";
 import { ConfigModule } from "@nestjs/config";
+import { LVModule } from "./LV/lv.module";
 import { Module } from "@nestjs/common";
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
-    BalenciagaModule,
-    NikeModule
-  ],
-  controllers: [],
-  providers: []
+    LVModule,
+    ValentinoModule
+  ]
 })
 export class AppModule { };

@@ -7,6 +7,11 @@ export class ChanelController {
 
     constructor(private readonly service: ChanelService) { };
 
+    @Post("seed")
+    async seedChanel(@Body() data: ChanelDTO[]) {
+        return this.service.seedChanel(data);
+    };
+
     @Post()
     create(@Body() dto: ChanelDTO) {
         return this.service.create(dto);

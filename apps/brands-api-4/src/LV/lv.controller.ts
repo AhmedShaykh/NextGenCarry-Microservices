@@ -1,19 +1,19 @@
 import { Controller, Get, Post, Param, Body } from "@nestjs/common";
-import { GucciService } from "./gucci.service";
-import { GucciDTO } from "./gucci.dto";
+import { LVServices } from "./lv.service";
+import { LVDTO } from "./lv.dto";
 
-@Controller("gucci")
-export class GucciController {
+@Controller("lv")
+export class LVController {
 
-    constructor(private readonly service: GucciService) { };
+    constructor(private readonly service: LVServices) { };
 
     @Post("seed")
-    async seedGucci(@Body() data: GucciDTO[]) {
-        return this.service.seedGucci(data);
+    async seedLV(@Body() data: LVDTO[]) {
+        return this.service.seedLV(data);
     };
 
     @Post()
-    create(@Body() dto: GucciDTO) {
+    create(@Body() dto: LVDTO) {
         return this.service.create(dto);
     };
 

@@ -6,7 +6,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model LV {
+model Gucci {
   id        String   @id @default(cuid())
   title     String
   desc      String
@@ -16,7 +16,7 @@ model LV {
   updatedAt DateTime @updatedAt
 }
 
-model Gucci {
+model Rolex {
   id        String   @id @default(cuid())
   title     String
   desc      String
@@ -29,7 +29,6 @@ model Gucci {
 enum Category {
   LUXURY_HANDBAGS
   SHOES_HEELS
-  TRAVELING_BAGS
   JEWELRY
   CLOTHING
   PURSE

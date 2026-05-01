@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException, ConflictException } from "@nestjs/common";
-import { Fendi, FendiDocument } from "./fendi.schema";
+import { Hermes, HermesDocument } from "./hermes.schema";
 import { InjectModel } from "@nestjs/mongoose";
-import { FendiDTO } from "./fendi.dto";
+import { HermesDTO } from "./hermes.dto";
 import { Model } from "mongoose";
 
 @Injectable()
-export class FendiService {
+export class HermesService {
 
-    constructor(@InjectModel(Fendi.name) private readonly FendiModel: Model<FendiDocument>) { };
+    constructor(@InjectModel(Hermes.name) private readonly HermesModel: Model<HermesDocument>) { };
 
-    async seedFendi(data: FendiDTO[]) {
+    async seedHermes(data: HermesDTO[]) {
 
         if (!Array.isArray(data)) {
 
@@ -19,7 +19,7 @@ export class FendiService {
 
         try {
 
-            const result = await this.FendiModel.insertMany(
+            const result = await this.HermesModel.insertMany(
                 data.map(item => ({
                     title: item.title,
                     desc: item.desc,
@@ -43,11 +43,11 @@ export class FendiService {
 
     };
 
-    async create(dto: FendiDTO) {
+    async create(dto: HermesDTO) {
 
         try {
 
-            const created = new this.FendiModel(dto);
+            const created = new this.HermesModel(dto);
 
             return await created.save();
 
@@ -67,17 +67,17 @@ export class FendiService {
 
     async findAll() {
 
-        return this.FendiModel.find().sort({ createdAt: -1 });
+        return this.HermesModel.find().sort({ createdAt: -1 });
 
     };
 
     async findOne(id: string) {
 
-        const product = await this.FendiModel.findById(id);
+        const product = await this.HermesModel.findById(id);
 
         if (!product) {
 
-            throw new NotFoundException(`Fendi With ID ${id} Not Found`);
+            throw new NotFoundException(`Hermes With ID ${id} Not Found`);
 
         }
 

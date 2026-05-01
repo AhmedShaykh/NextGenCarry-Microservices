@@ -7,6 +7,32 @@ export class ChanelService {
 
     constructor(private readonly prisma: PrismaService) { };
 
+    async seedChanel(data: ChanelDTO[]) {
+
+        if (!Array.isArray(data)) {
+
+            throw new Error("Data Must Be An Array");
+
+        }
+
+        const result = await this.prisma.chanel.createMany({
+            data: data.map(item => ({
+                title: item.title,
+                desc: item.desc,
+                imageUrl: item.imageUrl,
+                category: item.category
+            })),
+            skipDuplicates: true
+        });
+
+        return {
+            message: "Seed Completed",
+            inserted: result.count,
+            received: data.length
+        };
+
+    };
+
     async create(dto: ChanelDTO) {
 
         try {

@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException, ConflictException } from "@nestjs/common";
-import { Fendi, FendiDocument } from "./fendi.schema";
+import { YSL, YSLDocument } from "./ysl.schema";
 import { InjectModel } from "@nestjs/mongoose";
-import { FendiDTO } from "./fendi.dto";
+import { YSLDTO } from "./ysl.dto";
 import { Model } from "mongoose";
 
 @Injectable()
-export class FendiService {
+export class YSLService {
 
-    constructor(@InjectModel(Fendi.name) private readonly FendiModel: Model<FendiDocument>) { };
+    constructor(@InjectModel(YSL.name) private readonly YSLModel: Model<YSLDocument>) { };
 
-    async seedFendi(data: FendiDTO[]) {
+    async seedYSL(data: YSLDTO[]) {
 
         if (!Array.isArray(data)) {
 
@@ -19,7 +19,7 @@ export class FendiService {
 
         try {
 
-            const result = await this.FendiModel.insertMany(
+            const result = await this.YSLModel.insertMany(
                 data.map(item => ({
                     title: item.title,
                     desc: item.desc,
@@ -43,11 +43,11 @@ export class FendiService {
 
     };
 
-    async create(dto: FendiDTO) {
+    async create(dto: YSLDTO) {
 
         try {
 
-            const created = new this.FendiModel(dto);
+            const created = new this.YSLModel(dto);
 
             return await created.save();
 
@@ -67,17 +67,17 @@ export class FendiService {
 
     async findAll() {
 
-        return this.FendiModel.find().sort({ createdAt: -1 });
+        return this.YSLModel.find().sort({ createdAt: -1 });
 
     };
 
     async findOne(id: string) {
 
-        const product = await this.FendiModel.findById(id);
+        const product = await this.YSLModel.findById(id);
 
         if (!product) {
 
-            throw new NotFoundException(`Fendi With ID ${id} Not Found`);
+            throw new NotFoundException(`YSL With ID ${id} Not Found`);
 
         }
 

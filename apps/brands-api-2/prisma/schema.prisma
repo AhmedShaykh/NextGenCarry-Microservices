@@ -16,7 +16,7 @@ model Chanel {
   updatedAt DateTime @updatedAt
 }
 
-model Dior {
+model Nike {
   id        String   @id @default(cuid())
   title     String
   desc      String
@@ -29,7 +29,6 @@ model Dior {
 enum Category {
   LUXURY_HANDBAGS
   SHOES_HEELS
-  TRAVELING_BAGS
   JEWELRY
   CLOTHING
   PURSE

@@ -14,12 +14,12 @@ export enum Category {
     JACKETS = "JACKETS"
 };
 
-export type FendiDocument = Fendi & Document;
+export type YSLDocument = YSL & Document;
 
 @Schema({
     timestamps: true
 })
-export class Fendi {
+export class YSL {
     @Prop({
         required: true
     })
@@ -44,4 +44,4 @@ export class Fendi {
     category!: Category;
 };
 
-export const FendiSchema = SchemaFactory.createForClass(Fendi);
+export const YSLSchema = SchemaFactory.createForClass(YSL);
